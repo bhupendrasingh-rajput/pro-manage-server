@@ -5,12 +5,13 @@ const moment = require('moment');
 const createTask = async (req, res) => {
     try {
         const { title, priority, checklist, dueDate } = req.body;
+        const {userId} = req.body;
 
-        const token = req.headers.authorization;
+        // const token = req.headers.authorization;
 
-        const decodedToken = jwt.decode(token);
+        // const decodedToken = jwt.decode(token);
 
-        const userId = decodedToken.userId;
+        // const userId = decodedToken.userId;
 
         if (!title || !priority || !checklist){
             return res.status(400).json({
@@ -46,10 +47,11 @@ const createTask = async (req, res) => {
 const getAllTasks = async (req, res) => {
     try {
         const { frequency } = req.query;
+        const {userId} = req.body;
 
-        const token = req.headers.authorization;
-        const decodedToken = jwt.decode(token);
-        const userId = decodedToken.userId;
+        // const token = req.headers.authorization;
+        // const decodedToken = jwt.decode(token);
+        // const userId = decodedToken.userId;
         let filter = { refUserId: userId };
 
         if (frequency) {
